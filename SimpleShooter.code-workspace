@@ -10,7 +10,13 @@
 		}
 	],
 	"settings": {
-		"typescript.tsc.autoDetect": "off"
+		"typescript.tsc.autoDetect": "off",
+		"files.associations": {
+			"xiosbase": "cpp",
+			"xlocale": "cpp",
+			"__locale": "cpp",
+			"ios": "cpp"
+		}
 	},
 	"extensions": {
 		"recommendations": [
