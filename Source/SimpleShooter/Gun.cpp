@@ -36,8 +36,12 @@ void AGun::PullTrigger()
 	FVector End = Location + Rotation.Vector() * MaxRange;
 
 	FHitResult Hit;
-	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner()); //Stops the bullet hitting the character itself on the way out
-	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1, TraceParams);
+	// FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner()); //Stops the bullet hitting the character itself on the way out
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+	Params.AddIgnoredActor(GetOwner());
+
+	bool bSuccess = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECollisionChannel::ECC_GameTraceChannel1, Params);
 	if(bSuccess)
 	{
 		FVector ShotDirection = -Rotation.Vector(); //Where the shot is coming from
